@@ -6,6 +6,7 @@ import { AppController } from './app.controller';
 import { UniversitiesModule } from './universities/universities.module';
 import { CacheModule } from './cache/cache.module';
 import { DataSeederService } from './tasks/data-seeder.service';
+import { HealthModule } from './health/health.module';
 
 @Module({
   imports: [
@@ -22,6 +23,8 @@ import { DataSeederService } from './tasks/data-seeder.service';
     }),
     UniversitiesModule,
     CacheModule,
+    HealthModule,
+
   ],
   controllers: [AppController],
   providers: [AppService, DataSeederService],
