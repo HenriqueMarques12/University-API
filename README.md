@@ -1,98 +1,92 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+API de Universidades
+Uma API RESTful desenvolvida com NestJS para consulta e gerenciamento de informações sobre universidades ao redor do mundo, incluindo funcionalidade para armazenar cotações com um sistema de cache.
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Funcionalidades
+Consultas de universidades com filtros por nome e país
+Paginação de resultados
+Armazenamento de cotações para universidades
+Cache Redis para performance otimizada
+Documentação automática com Swagger
+Verificações de saúde para monitoramento
+Integração contínua com Docker
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+📋 Requisitos
+Node.js (v14 ou superior)
+MongoDB (v4.4 ou superior)
+Redis (v6 ou superior)
+Docker e Docker Compose (opcional, para execução em contêineres)
+⚙️ Configuração do Ambiente
+Usando Docker (Recomendado)
+Clone o repositório:
 
-## Description
+   git clone https://github.com/seu-usuario/university-api.git
+   cd university-api
+Crie um arquivo .env baseado no .env.example:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+   cp .env.example .env
+Inicie os contêineres:
 
-## Project setup
+   docker-compose up -d
+A API estará disponível em: http://localhost:3000
+A documentação Swagger estará em: http://localhost:3000/api/docs
 
-```bash
-$ npm install
-```
+Instalação Local
+Clone o repositório:
 
-## Compile and run the project
+   git clone https://github.com/seu-usuario/university-api.git
+   cd university-api
 
-```bash
-# development
-$ npm run start
+Instale as dependências:
 
-# watch mode
-$ npm run start:dev
+   npm install
+Crie um arquivo .env baseado no .env.example:
 
-# production mode
-$ npm run start:prod
-```
+   cp .env.example .env
+Certifique-se de que MongoDB e Redis estão rodando localmente ou configure as variáveis de ambiente para apontar para as instâncias corretas.
+Execute a aplicação:
 
-## Run tests
+   # Desenvolvimento
+   npm run start:dev
+   
+   # Produção
+   npm run build
+   npm run start:prod
+🧪 Testes
 
-```bash
-# unit tests
-$ npm run test
+# Testes unitários
+npm run test
 
-# e2e tests
-$ npm run test:e2e
+# Testes e2e
+npm run test:e2e
 
-# test coverage
-$ npm run test:cov
-```
+# Cobertura de testes
+npm run test:cov
+📊 Endpoints da API
+Universidades
+GET /universities - Listar universidades (com suporte para paginação e filtros)
+GET /universities/:id - Obter detalhes de uma universidade
+GET /universities/quotes/latest - Obter as cotações mais recentes
+GET /universities/:id/quote - Obter a cotação de uma universidade específica
+PUT /universities/:id/quote - Atualizar a cotação de uma universidade
+Parâmetros de Consulta
+name - Filtrar por nome da universidade
+country - Filtrar por país
+page - Número da página (padrão: 1)
+limit - Itens por página (padrão: 20, máximo: 100)
+Verificação de Saúde
+GET /health - Verificar a saúde da aplicação e suas dependências
+📈 Sistema de Cache
+Esta API utiliza Redis para armazenar em cache:
 
-## Deployment
+A cotação mais recente de cada universidade
+Uma lista das 10 cotações mais recentes de todas as universidades
+O tempo padrão de expiração do cache é de 1 hora para cotações individuais e 24 horas para a lista de cotações recentes, configurável através da variável de ambiente CACHE_TTL.
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+🔄 Carregamento de Dados
+Na primeira inicialização, a API automaticamente baixa e carrega dados sobre universidades de todo o mundo a partir da fonte oficial, criando um banco de dados pronto para uso.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+🤝 Contribuições
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
 
-```bash
-$ npm install -g mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+📜 Licença
+MIT
