@@ -34,7 +34,7 @@ A documentação Swagger estará em: http://localhost:3000/api/docs
 Instalação Local
 Clone o repositório:
 
-   git clone https://github.com/seu-usuario/university-api.git
+   git clone https://github.com/HenriqueMarques12/university-api
    cd university-api
 
 Instale as dependências:
