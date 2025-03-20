@@ -1,4 +1,5 @@
 API de Universidades
+
 Uma API RESTful desenvolvida com NestJS para consulta e gerenciamento de informações sobre universidades ao redor do mundo, incluindo funcionalidade para armazenar cotações com um sistema de cache.
 
 Funcionalidades
@@ -61,12 +62,18 @@ npm run test:e2e
 
 # Cobertura de testes
 npm run test:cov
+
 📊 Endpoints da API
+
 Universidades
 GET /universities - Listar universidades (com suporte para paginação e filtros)
+
 GET /universities/:id - Obter detalhes de uma universidade
+
 GET /universities/quotes/latest - Obter as cotações mais recentes
+
 GET /universities/:id/quote - Obter a cotação de uma universidade específica
+
 PUT /universities/:id/quote - Atualizar a cotação de uma universidade
 Parâmetros de Consulta
 name - Filtrar por nome da universidade
@@ -74,6 +81,7 @@ country - Filtrar por país
 page - Número da página (padrão: 1)
 limit - Itens por página (padrão: 20, máximo: 100)
 Verificação de Saúde
+
 GET /health - Verificar a saúde da aplicação e suas dependências
 📈 Sistema de Cache
 Esta API utiliza Redis para armazenar em cache:
