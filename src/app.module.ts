@@ -7,6 +7,7 @@ import { UniversitiesModule } from './universities/universities.module';
 import { CacheModule } from './cache/cache.module';
 import { DataSeederService } from './tasks/data-seeder.service';
 import { HealthModule } from './health/health.module';
+import { TemplateService } from './views/template.service';
 
 @Module({
   imports: [
@@ -27,6 +28,6 @@ import { HealthModule } from './health/health.module';
 
   ],
   controllers: [AppController],
-  providers: [AppService, DataSeederService],
+  providers: [AppService, DataSeederService, TemplateService],
 })
 export class AppModule {}
